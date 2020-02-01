@@ -17,6 +17,6 @@ public class Network{
 
         Distance = inst.getTable("DistanceTable");
         Distancevalue = Distance.getEntry("value");
-        Distancevalue.setDouble(0);
+        Distancevalue.setString("awsomeness");
     }
 }

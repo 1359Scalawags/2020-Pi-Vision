@@ -30,6 +30,7 @@ import edu.wpi.first.vision.VisionThread;
 
 import team1359.Pipeline.GripPipeline;
 import team1359.Network;
+import team1359.Updator;
 
 public final class Main {
   private static String configFile = "/boot/frc.json";
@@ -251,15 +252,17 @@ public final class Main {
       return;
     }
 
-    // start NetworkTables
-    NetworkTableInstance ntinst = NetworkTableInstance.getDefault();
-    if (server) {
-      System.out.println("Setting up NetworkTables server");
-      ntinst.startServer();
-    } else {
-      System.out.println("Setting up NetworkTables client for team " + team);
-      ntinst.startClientTeam(team);
-    }
+    Network net = new Network();
+
+    // // start NetworkTables
+    // NetworkTableInstance ntinst = NetworkTableInstance.getDefault();
+    // if (server) {
+    //   System.out.println("Setting up NetworkTables server");
+    //   ntinst.startServer();
+    // } else {
+    //   System.out.println("Setting up NetworkTables client for team " + team);
+    //   ntinst.startClientTeam(team);
+    // }
 
     // start cameras
     for (CameraConfig config : cameraConfigs) {
@@ -279,23 +282,11 @@ public final class Main {
         // do something with pipeline results
         
       });
-      
-      /* something like this for GRIP:
-      VisionThread visionThread = new VisionThread(cameras.get(0),
-              new GripPipeline(), pipeline -> {
-        ...
-      });
-       */
       visionThread.start();
     }
 
     // loop forever
-    for (;;) {
-      try {
-        Thread.sleep(10000);
-      } catch (InterruptedException ex) {
-        return;
-      }
-    }
+    Updator update = new Updator();
+
   }
 }
