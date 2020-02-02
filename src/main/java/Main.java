@@ -34,7 +34,6 @@ import team1359.Updator;
 import team1359.Global;
 
 public final class Main {
-  public static String configFile = "/boot/frc.json";
   // public Global Global = new Global();
   
   
@@ -66,7 +65,7 @@ public final class Main {
    * Report parse error.
    */
   public static void parseError(String str) {
-    System.err.println("config error in '" + configFile + "': " + str);
+    System.err.println("config error in '" + Global.configFile + "': " + str);
   }
 
   /**
@@ -134,9 +133,9 @@ public final class Main {
     // parse file
     JsonElement top;
     try {
-      top = new JsonParser().parse(Files.newBufferedReader(Paths.get(configFile)));
+      top = new JsonParser().parse(Files.newBufferedReader(Paths.get(Global.configFile)));
     } catch (IOException ex) {
-      System.err.println("could not open '" + configFile + "': " + ex);
+      System.err.println("could not open '" + Global.configFile + "': " + ex);
       return false;
     }
 
@@ -249,7 +248,7 @@ public final class Main {
    */
   public static void main(String... args) {
     if (args.length > 0) {
-      configFile = args[0];
+      Global.configFile = args[0];
     }
 
     // read configuration

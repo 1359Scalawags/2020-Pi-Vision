@@ -23,6 +23,7 @@ public class Global {
       public String key;
     };
     
+    public static String configFile = "/boot/frc.json";
     public static int team;
     public static Boolean server;
     public static List<CameraConfig> cameraConfigs = new ArrayList<>();
