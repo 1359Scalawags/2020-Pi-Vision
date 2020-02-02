@@ -34,28 +34,30 @@ import team1359.Updator;
 import team1359.Global;
 
 public final class Main {
-  private static String configFile = "/boot/frc.json";
-  public Global Global = new Global();
+  public static String configFile = "/boot/frc.json";
+  // public Global Global = new Global();
+  
+  
 
-  @SuppressWarnings("MemberName")
-  public static class CameraConfig {
-    public String name;
-    public String path;
-    public JsonObject config;
-    public JsonElement streamConfig;
-  }
+  // @SuppressWarnings("MemberName")
+  // public static class CameraConfig {
+  //   public String name;
+  //   public String path;
+  //   public JsonObject config;
+  //   public JsonElement streamConfig;
+  // }
 
-  @SuppressWarnings("MemberName")
-  public static class SwitchedCameraConfig {
-    public String name;
-    public String key;
-  };
+  // @SuppressWarnings("MemberName")
+  // public static class SwitchedCameraConfig {
+  //   public String name;
+  //   public String key;
+  // };
 
-  public static int team;
-  public static boolean server;
-  public static List<CameraConfig> cameraConfigs = new ArrayList<>();
-  public static List<SwitchedCameraConfig> switchedCameraConfigs = new ArrayList<>();
-  public static List<VideoSource> cameras = new ArrayList<>();
+  // public static int team;
+  // public static boolean server;
+  // public static List<CameraConfig> cameraConfigs = new ArrayList<>();
+  // public static List<SwitchedCameraConfig> switchedCameraConfigs = new ArrayList<>();
+  // public static List<VideoSource> cameras = new ArrayList<>();
 
   private Main() {
   }
@@ -71,7 +73,7 @@ public final class Main {
    * Read single camera configuration.
    */
   public static boolean readCameraConfig(JsonObject config) {
-    CameraConfig cam = new CameraConfig();
+    Global.CameraConfig cam = new Global.CameraConfig();
 
     // name
     JsonElement nameElement = config.get("name");
@@ -94,7 +96,7 @@ public final class Main {
 
     cam.config = config;
 
-    cameraConfigs.add(cam);
+    Global.cameraConfigs.add(cam);
     return true;
   }
 
@@ -102,7 +104,7 @@ public final class Main {
    * Read single switched camera configuration.
    */
   public static boolean readSwitchedCameraConfig(JsonObject config) {
-    SwitchedCameraConfig cam = new SwitchedCameraConfig();
+    Global.SwitchedCameraConfig cam = new Global.SwitchedCameraConfig();
 
     // name
     JsonElement nameElement = config.get("name");
@@ -120,7 +122,7 @@ public final class Main {
     }
     cam.key = keyElement.getAsString();
 
-    switchedCameraConfigs.add(cam);
+    Global.switchedCameraConfigs.add(cam);
     return true;
   }
 
@@ -151,15 +153,16 @@ public final class Main {
       parseError("could not read team number");
       return false;
     }
-    team = teamElement.getAsInt();
+    // team = teamElement.getAsInt();
+    Global.team = teamElement.getAsInt();
 
     // ntmode (optional)
     if (obj.has("ntmode")) {
       String str = obj.get("ntmode").getAsString();
       if ("client".equalsIgnoreCase(str)) {
-        server = false;
+        Global.server = false;
       } else if ("server".equalsIgnoreCase(str)) {
-        server = true;
+        Global.server = true;
       } else {
         parseError("could not understand ntmode value '" + str + "'");
       }
@@ -193,7 +196,7 @@ public final class Main {
   /**
    * Start running the camera.
    */
-  public static VideoSource startCamera(CameraConfig config) {
+  public static VideoSource startCamera(Global.CameraConfig config) {
     System.out.println("Starting camera '" + config.name + "' on " + config.path);
     CameraServer inst = CameraServer.getInstance();
     UsbCamera camera = new UsbCamera(config.name, config.path);
@@ -214,7 +217,7 @@ public final class Main {
   /**
    * Start running the switched camera.
    */
-  public static MjpegServer startSwitchedCamera(SwitchedCameraConfig config) {
+  public static MjpegServer startSwitchedCamera(Global.SwitchedCameraConfig config) {
     System.out.println("Starting switched camera '" + config.name + "' on " + config.key);
     MjpegServer server = CameraServer.getInstance().addSwitchedCamera(config.name);
 
@@ -223,14 +226,14 @@ public final class Main {
         .addListener(event -> {
               if (event.value.isDouble()) {
                 int i = (int) event.value.getDouble();
-                if (i >= 0 && i < cameras.size()) {
-                  server.setSource(cameras.get(i));
+                if (i >= 0 && i < Global.cameras.size()) {
+                  server.setSource(Global.cameras.get(i));
                 }
               } else if (event.value.isString()) {
                 String str = event.value.getString();
-                for (int i = 0; i < cameraConfigs.size(); i++) {
-                  if (str.equals(cameraConfigs.get(i).name)) {
-                    server.setSource(cameras.get(i));
+                for (int i = 0; i < Global.cameraConfigs.size(); i++) {
+                  if (str.equals(Global.cameraConfigs.get(i).name)) {
+                    server.setSource(Global.cameras.get(i));
                     break;
                   }
                 }
@@ -257,19 +260,19 @@ public final class Main {
     Network net = new Network();
 
     // start cameras
-    for (CameraConfig config : cameraConfigs) {
-      cameras.add(startCamera(config));
+    for (Global.CameraConfig config : Global.cameraConfigs) {
+      Global.cameras.add(startCamera(config));
     }
 
     // start switched cameras
-    for (SwitchedCameraConfig config : switchedCameraConfigs) {
+    for (Global.SwitchedCameraConfig config : Global.switchedCameraConfigs) {
       startSwitchedCamera(config);
     }
     
 
     // start image processing on camera 0 if present
-    if (cameras.size() >= 1) {
-      VisionThread visionThread = new VisionThread(cameras.get(0),
+    if (Global.cameras.size() >= 1) {
+      VisionThread visionThread = new VisionThread(Global.cameras.get(0),
         new GripPipeline(), pipeline -> {
         // do something with pipeline results
         
@@ -279,6 +282,6 @@ public final class Main {
 
     // loop forever
     Updator update = new Updator();
-
+    
   }
 }
