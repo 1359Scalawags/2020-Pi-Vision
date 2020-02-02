@@ -35,7 +35,7 @@ import team1359.Global;
 
 public final class Main {
   private static String configFile = "/boot/frc.json";
-  public GlobalVars Global = new GlobalVars();
+  public Global Global = new Global();
 
   @SuppressWarnings("MemberName")
   public static class CameraConfig {
