@@ -6,6 +6,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.networktables.NetworkTableType;
 import edu.wpi.first.networktables.NetworkTableValue;
 import edu.wpi.first.networktables.TableEntryListener;
+import team1359.Global;
 
 public class Network{
     NetworkTableInstance inst;
@@ -13,10 +14,21 @@ public class Network{
     NetworkTableEntry Distancevalue;
 
     public Network(){
-        inst = NetworkTableInstance.getDefault();
+        NetworkTableInstance ntinst = NetworkTableInstance.getDefault();
+        if (Global.server) {
+            ntinst.startServer();
+        }
+        else {
+            ntinst.startClientTeam(Global.team);
+        }
 
-        Distance = inst.getTable("DistanceTable");
+        Distance = ntinst.getTable("DistanceTable");
         Distancevalue = Distance.getEntry("value");
         Distancevalue.setString("awsomeness");
+    }
+
+    public void update(){
+        Distance = inst.getTable("DistanceTable");
+        Distancevalue = Distance.getEntry("value");
     }
 }

@@ -31,9 +31,11 @@ import edu.wpi.first.vision.VisionThread;
 import team1359.Pipeline.GripPipeline;
 import team1359.Network;
 import team1359.Updator;
+import team1359.Global;
 
 public final class Main {
   private static String configFile = "/boot/frc.json";
+  public GlobalVars Global = new GlobalVars();
 
   @SuppressWarnings("MemberName")
   public static class CameraConfig {
@@ -253,16 +255,6 @@ public final class Main {
     }
 
     Network net = new Network();
-
-    // // start NetworkTables
-    // NetworkTableInstance ntinst = NetworkTableInstance.getDefault();
-    // if (server) {
-    //   System.out.println("Setting up NetworkTables server");
-    //   ntinst.startServer();
-    // } else {
-    //   System.out.println("Setting up NetworkTables client for team " + team);
-    //   ntinst.startClientTeam(team);
-    // }
 
     // start cameras
     for (CameraConfig config : cameraConfigs) {
