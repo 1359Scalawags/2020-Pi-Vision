@@ -22,6 +22,7 @@ public class Network{
             ntinst.startClientTeam(Global.team);
         }
 
+
         Distance = ntinst.getTable("DistanceTable");
         Distancevalue = Distance.getEntry("value");
         Distancevalue.setString("awsomeness");
@@ -30,5 +31,6 @@ public class Network{
     public void update(){
         Distance = inst.getTable("DistanceTable");
         Distancevalue = Distance.getEntry("value");
+        String str  = Distancevalue.getString("Nothing RPI");
     }
 }
