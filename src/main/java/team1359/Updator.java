@@ -8,9 +8,8 @@ public class Updator{
     public Updator(){
         while(true){
             try{
-                for(int i=0; i<events.size(); i++){
-                    events.get(i);
-                }
+                // Network net = new Network();
+                // net.update();
             }
             catch(Exception exception){
 

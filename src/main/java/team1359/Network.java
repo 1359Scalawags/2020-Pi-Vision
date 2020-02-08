@@ -9,28 +9,43 @@ import edu.wpi.first.networktables.TableEntryListener;
 import team1359.Global;
 
 public class Network{
+
+
     NetworkTableInstance inst;
     NetworkTable Distance; 
     NetworkTableEntry Distancevalue;
 
     public Network(){
-        NetworkTableInstance ntinst = NetworkTableInstance.getDefault();
+
+        inst = NetworkTableInstance.getDefault();
+        inst.startServer();
+        inst.setServerTeam(1359);
+        
         if (Global.server) {
-            ntinst.startServer();
+            inst.startServer();
         }
         else {
-            ntinst.startClientTeam(Global.team);
+            inst.startClientTeam(Global.team);
         }
 
 
-        Distance = ntinst.getTable("DistanceTable");
+        Distance = inst.getTable("DistanceTable");
         Distancevalue = Distance.getEntry("value");
         Distancevalue.setString("awsomeness");
+
+            
+            // NetworkTable.setClientMode();
+            // NetworkTable.setTeam(1359);
+            // NetworkTable.setIPAddress("roborio-6325-frc.local"); // ip of roborio
+            // NetworkTable.initialize();
     }
 
     public void update(){
         Distance = inst.getTable("DistanceTable");
         Distancevalue = Distance.getEntry("value");
         String str  = Distancevalue.getString("Nothing RPI");
+
+        
+        System.out.println(str);
     }
 }
