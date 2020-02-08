@@ -26,7 +26,7 @@ public class Cam {
         camera.setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);
 
         if (config.streamConfig != null) {
-        server.setConfigJson(gson.toJson(config.streamConfig));
+            server.setConfigJson(gson.toJson(config.streamConfig));
         }
 
         return camera;
@@ -50,14 +50,14 @@ public class Cam {
                 } else if (event.value.isString()) {
                     String str = event.value.getString();
                     for (int i = 0; i < Global.cameraConfigs.size(); i++) {
-                    if (str.equals(Global.cameraConfigs.get(i).name)) {
-                        server.setSource(Global.cameras.get(i));
-                        break;
-                    }
+                        if (str.equals(Global.cameraConfigs.get(i).name)) {
+                            server.setSource(Global.cameras.get(i));
+                            break;
+                        }
                     }
                 }
-                },
-                EntryListenerFlags.kImmediate | EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+            },
+            EntryListenerFlags.kImmediate | EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
         return server;
     }
