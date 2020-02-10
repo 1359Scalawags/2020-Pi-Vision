@@ -16,28 +16,19 @@ public class Network{
     NetworkTableEntry Distancevalue;
 
     public Network(){
-
         inst = NetworkTableInstance.getDefault();
-        inst.startServer();
-        inst.setServerTeam(1359);
-        
         if (Global.server) {
-            inst.startServer();
+          System.out.println("Setting up NetworkTables server");
+          inst.startServer();
+        } else {
+          System.out.println("Setting up NetworkTables client for team " + Global.team);
+          inst.startClientTeam(Global.team);
         }
-        else {
-            inst.startClientTeam(Global.team);
-        }
-
 
         Distance = inst.getTable("DistanceTable");
         Distancevalue = Distance.getEntry("value");
-        Distancevalue.setString("awsomeness");
 
-            
-            // NetworkTable.setClientMode();
-            // NetworkTable.setTeam(1359);
-            // NetworkTable.setIPAddress("roborio-6325-frc.local"); // ip of roborio
-            // NetworkTable.initialize();
+        Distancevalue.setNumber(1);
     }
 
     public void update(){
