@@ -39,20 +39,23 @@ public final class Main {
     for (Global.SwitchedCameraConfig config : Global.switchedCameraConfigs) {
       Cam.startSwitchedCamera(config);
     }
-    
 
     // start image processing on camera 0 if present
     if (Global.cameras.size() >= 1) {
-      VisionThread visionThread = new VisionThread(Global.cameras.get(0),
-        new GripPipeline(), pipeline -> {
+      VisionThread visionThread = new VisionThread(Global.cameras.get(0), new GripPipeline(), pipeline -> {
         // do something with pipeline results
-        
+
       });
       visionThread.start();
     }
 
     // loop forever
-    Updator update = new Updator();
+    // Updator update = new Updator();
+    try {
+      FanControl f = new FanControl();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
     
   }
 }

@@ -8,7 +8,7 @@ import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
 
 public class FanControl{
-    public FanControl(){
+    public FanControl() throws InterruptedException {
         GpioController gpio = GpioFactory.getInstance();
         GpioPinDigitalOutput pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "Fan Power", PinState.HIGH);
 
@@ -16,7 +16,12 @@ public class FanControl{
         pin.setShutdownOptions(true, PinState.LOW);
 
         // turn off gpio pin #01
-        pin.low();
-        gpio.shutdown();
+        while(true){
+            pin.low();
+            Thread.sleep(5000);
+            pin.high();
+        }
+
+        // gpio.shutdown();
     }
 }

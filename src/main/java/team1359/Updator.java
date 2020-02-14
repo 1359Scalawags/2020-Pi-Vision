@@ -8,6 +8,7 @@ public class Updator{
     public Updator(){
         while(true){
             try{
+                FanControl f = new FanControl();
                 // Network net = new Network();
                 // net.update();
             }
