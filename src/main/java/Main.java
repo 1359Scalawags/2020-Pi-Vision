@@ -51,11 +51,14 @@ public final class Main {
 
     // loop forever
     // Updator update = new Updator();
-    try {
-      FanControl f = new FanControl();
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-    
+    while(true){
+      try{
+          // Network net = new Network();
+          // net.update();
+      }
+      catch(Exception exception){
+
+      }
+  }
   }
 }
