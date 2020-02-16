@@ -52,7 +52,7 @@ public final class Main {
     // loop forever
     // Updator update = new Updator();
     try {
-      FanControl f = new FanControl();
+      // FanControl f = new FanControl();
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
