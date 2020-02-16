@@ -19,6 +19,7 @@ public final class Main {
    * Main.
    */
   public static void main(String... args) {
+    
     if (args.length > 0) {
       Global.configFile = args[0];
     }
@@ -29,6 +30,8 @@ public final class Main {
     }
 
     Network net = new Network();
+
+
 
     // start cameras
     for (Global.CameraConfig config : Global.cameraConfigs) {
@@ -48,17 +51,17 @@ public final class Main {
       });
       visionThread.start();
     }
+    // FanControl f = new FanControl();
 
-    // loop forever
-    // Updator update = new Updator();
     while(true){
       try{
           // Network net = new Network();
           // net.update();
+          System.out.println("test");
       }
       catch(Exception exception){
-
+        System.out.println(exception);
       }
-  }
+    }
   }
 }

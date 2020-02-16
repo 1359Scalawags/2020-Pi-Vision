@@ -10,8 +10,6 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
-import com.pi4j.io.gpio.GpioController;
-
 public class Cam {
     /**
      * Start running the camera.
