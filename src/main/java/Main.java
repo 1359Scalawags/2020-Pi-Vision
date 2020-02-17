@@ -57,7 +57,7 @@ public final class Main {
       try{
           // Network net = new Network();
           // net.update();
-          System.out.println("test");
+          // System.out.println("test");
       }
       catch(Exception exception){
         System.out.println(exception);
