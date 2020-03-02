@@ -38,4 +38,7 @@ public class Network{
         String str = Distancevalue.getString("Nothing RPI") + " " + AngleValue.getString("Nothing RPI");
         System.out.println(str);
     }
+
+	public static void setTable(double distanceFromTarget, double angleFromTarget) {
+	}
 }

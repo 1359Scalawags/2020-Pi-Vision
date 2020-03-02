@@ -44,11 +44,14 @@ public class Pipeline{
         * @param val The min and max value
         * @param output The image in which to store the output.
         */
-        private void hsvThreshold(Mat input, double[] hue, double[] sat, double[] val,
-            Mat out) {
-        Imgproc.cvtColor(input, out, Imgproc.COLOR_BGR2HSV);
-        Core.inRange(out, new Scalar(hue[0], sat[0], val[0]),
+        private void hsvThreshold(Mat input, double[] hue, double[] sat, double[] val, Mat out) {
+            Imgproc.cvtColor(input, out, Imgproc.COLOR_BGR2HSV);
+            Core.inRange(out, new Scalar(hue[0], sat[0], val[0]),
             new Scalar(hue[1], sat[1], val[1]), out);
         }
+
+		public Object filterContoursOutput() {
+			return null;
+		}
     }
 }
