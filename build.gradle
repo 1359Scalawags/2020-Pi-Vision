@@ -27,9 +27,6 @@ dependencies {
     compile name: 'wpiHal'
     
     compile name: 'ntcore'
-    compile name: 'pi4j-core'
-    compile name: 'pi4j-core-sources'
-    compile name: 'pi4j-core-javadoc'
 }
 
 wrapper {
