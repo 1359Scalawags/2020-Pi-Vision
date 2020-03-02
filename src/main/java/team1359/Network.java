@@ -9,8 +9,8 @@ public class Network{
 
 
     NetworkTableInstance inst;
-    NetworkTable Distance; 
-    NetworkTableEntry Distancevalue;
+    NetworkTable NT;
+    NetworkTableEntry Distancevalue, AngleValue;
 
     public Network(){
         inst = NetworkTableInstance.getDefault();
@@ -22,18 +22,21 @@ public class Network{
           inst.startClientTeam(Global.team);
         }
 
-        Distance = inst.getTable("DistanceTable");
-        Distancevalue = Distance.getEntry("value");
+        NT = inst.getTable("PI");
+
+        Distancevalue = NT.getEntry("Distance");
+        AngleValue = NT.getEntry("Angle");
 
         Distancevalue.setNumber(1);
     }
 
     public void update(){
-        Distance = inst.getTable("DistanceTable");
-        Distancevalue = Distance.getEntry("value");
-        String str  = Distancevalue.getString("Nothing RPI");
+        NT = inst.getTable("PI");
 
-        
+        Distancevalue = NT.getEntry("Distance");
+        AngleValue = NT.getEntry("Angle");
+
+        String str = Distancevalue.getString("Nothing RPI") + " " + AngleValue.getString("Nothing RPI");
         System.out.println(str);
     }
 }

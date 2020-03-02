@@ -29,9 +29,7 @@ public final class Main {
       return;
     }
 
-    Network net = new Network();
-
-
+    new Network();
 
     // start cameras
     for (Global.CameraConfig config : Global.cameraConfigs) {
