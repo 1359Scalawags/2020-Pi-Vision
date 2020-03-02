@@ -6,28 +6,27 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import team1359.Global;
 
 public class Network{
-
-
     NetworkTableInstance inst;
     NetworkTable NT;
     NetworkTableEntry Distancevalue, AngleValue;
 
-    public Network(){
-        inst = NetworkTableInstance.getDefault();
-        if (Global.server) {
-          System.out.println("Setting up NetworkTables server");
-          inst.startServer();
-        } else {
-          System.out.println("Setting up NetworkTables client for team " + Global.team);
-          inst.startClientTeam(Global.team);
-        }
+    public void init(){
+      inst = NetworkTableInstance.getDefault();
+      if (Global.server) {
+        System.out.println("Setting up NetworkTables server");
+        inst.startServer();
+      } else {
+        System.out.println("Setting up NetworkTables client for team " + Global.team);
+        inst.startClientTeam(Global.team);
+      }
 
-        NT = inst.getTable("PI");
+      NT = inst.getTable("PI");
 
-        Distancevalue = NT.getEntry("Distance");
-        AngleValue = NT.getEntry("Angle");
+      Distancevalue = NT.getEntry("Distance");
+      AngleValue = NT.getEntry("Angle");
 
-        Distancevalue.setNumber(1);
+      Distancevalue.setNumber(-1);
+      AngleValue.setNumber(-1);
     }
 
     public void update(){
