@@ -17,6 +17,7 @@ import team1359.Pipeline.GripPipeline;
 public final class Main {
   
   public Network net = new Network();
+  public Calculation calc  = new Calculation();
 
   private Main() {
   }
@@ -58,9 +59,10 @@ public final class Main {
       //   Network.setTable(Calculation.getDistanceFromTarget(), Calculation.getAngleFromTarget());
         
       // });
+      
       VisionThread visionThread = new VisionThread(cameras.get(0), new GripPipeline(), pipeline -> {
-        Calculation.processContours(pipeline.filterContoursOutput());
-        Network.setTable(Calculation.getDistanceFromTarget(), Calculation.getAngleFromTarget());
+        calc.processContours(pipeline.filterContoursOutput());
+        net.setTable(calc.getDistanceFromTarget(), calc.getAngleFromTarget());
       });
 
       visionThread.start();
