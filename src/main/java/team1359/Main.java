@@ -6,12 +6,7 @@
 /*----------------------------------------------------------------------------*/
 package team1359;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.vision.VisionThread;
-import team1359.Global.CameraConfig;
 import team1359.Pipeline.GripPipeline;
 
 public final class Main {
@@ -54,12 +49,6 @@ public final class Main {
 
     // start image processing on camera 0 if present
     if (global.cameras.size() >= 1) {
-      // VisionThread visionThread = new VisionThread(Global.cameras.get(0), new GripPipeline(), pipeline -> {
-      //   Calculation.processContours(pipeline.filterContoursOutput());
-      //   Network.setTable(Calculation.getDistanceFromTarget(), Calculation.getAngleFromTarget());
-        
-      // });
-      
       VisionThread visionThread = new VisionThread(global.cameras.get(0), new GripPipeline(), pipeline -> {
         calc.processContours(pipeline.filterContoursOutput());
         net.setTable(calc.getDistanceFromTarget(), calc.getAngleFromTarget());
