@@ -39,6 +39,7 @@ public class Network{
         System.out.println(str);
     }
 
-	public static void setTable(double distanceFromTarget, double angleFromTarget) {
+	public void setTable(double distanceFromTarget, double angleFromTarget) {
+
 	}
 }

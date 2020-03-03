@@ -2,8 +2,12 @@ package team1359;
 
 
 import edu.wpi.first.vision.VisionPipeline;
+
+import java.util.ArrayList;
+
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
+import org.opencv.core.MatOfPoint;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 public class Pipeline{
@@ -50,8 +54,9 @@ public class Pipeline{
             new Scalar(hue[1], sat[1], val[1]), out);
         }
 
-		public Object filterContoursOutput() {
-			return null;
+		public ArrayList<MatOfPoint> filterContoursOutput() {
+            ArrayList<MatOfPoint> contours = new ArrayList<MatOfPoint>();
+            return contours;
 		}
     }
 }

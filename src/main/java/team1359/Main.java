@@ -6,13 +6,17 @@
 /*----------------------------------------------------------------------------*/
 package team1359;
 
-import edu.wpi.first.vision.VisionThread;
+import java.util.ArrayList;
+import java.util.List;
 
+import edu.wpi.cscore.VideoSource;
+import edu.wpi.first.vision.VisionThread;
+import team1359.Global.CameraConfig;
 import team1359.Pipeline.GripPipeline;
 
 public final class Main {
   
-  public static Network net = new Network();
+  public Network net = new Network();
 
   private Main() {
   }
@@ -20,7 +24,7 @@ public final class Main {
   /**
    * Main.
    */
-  public static void main(String... args) {
+  public void main(String... args) {
     
     if (args.length > 0) {
       Global.configFile = args[0];
@@ -33,9 +37,13 @@ public final class Main {
 
     net.init();
 
+    
+		// start cameras
+		List<VideoSource> cameras = new ArrayList<>();
+
     // start cameras
     for (Global.CameraConfig config : Global.cameraConfigs) {
-      Global.cameras.add(Cam.startCamera(config));
+      cameras.add(Cam.startCamera(config));
     }
 
     // start switched cameras
@@ -44,12 +52,17 @@ public final class Main {
     }
 
     // start image processing on camera 0 if present
-    if (Global.cameras.size() >= 1) {
-      VisionThread visionThread = new VisionThread(Global.cameras.get(0), new GripPipeline(), pipeline -> {
+    if (cameras.size() >= 1) {
+      // VisionThread visionThread = new VisionThread(Global.cameras.get(0), new GripPipeline(), pipeline -> {
+      //   Calculation.processContours(pipeline.filterContoursOutput());
+      //   Network.setTable(Calculation.getDistanceFromTarget(), Calculation.getAngleFromTarget());
+        
+      // });
+      VisionThread visionThread = new VisionThread(cameras.get(0), new GripPipeline(), pipeline -> {
         Calculation.processContours(pipeline.filterContoursOutput());
         Network.setTable(Calculation.getDistanceFromTarget(), Calculation.getAngleFromTarget());
-        
       });
+
       visionThread.start();
     }
 
