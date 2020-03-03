@@ -18,6 +18,7 @@ public final class Main {
   
   public Network net = new Network();
   public Calculation calc  = new Calculation();
+  public static Global global = new Global();
 
   private Main() {
   }
@@ -40,11 +41,10 @@ public final class Main {
 
     
 		// start cameras
-		List<VideoSource> cameras = new ArrayList<>();
 
     // start cameras
     for (Global.CameraConfig config : Global.cameraConfigs) {
-      cameras.add(Cam.startCamera(config));
+      global.cameras.add(Cam.startCamera(config));
     }
 
     // start switched cameras
@@ -53,14 +53,14 @@ public final class Main {
     }
 
     // start image processing on camera 0 if present
-    if (cameras.size() >= 1) {
+    if (global.cameras.size() >= 1) {
       // VisionThread visionThread = new VisionThread(Global.cameras.get(0), new GripPipeline(), pipeline -> {
       //   Calculation.processContours(pipeline.filterContoursOutput());
       //   Network.setTable(Calculation.getDistanceFromTarget(), Calculation.getAngleFromTarget());
         
       // });
       
-      VisionThread visionThread = new VisionThread(cameras.get(0), new GripPipeline(), pipeline -> {
+      VisionThread visionThread = new VisionThread(global.cameras.get(0), new GripPipeline(), pipeline -> {
         calc.processContours(pipeline.filterContoursOutput());
         net.setTable(calc.getDistanceFromTarget(), calc.getAngleFromTarget());
       });

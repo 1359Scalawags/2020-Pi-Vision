@@ -28,4 +28,5 @@ public class Global {
     public static Boolean server;
     public static List<CameraConfig> cameraConfigs = new ArrayList<>();
     public static List<SwitchedCameraConfig> switchedCameraConfigs = new ArrayList<>();
+    public List<VideoSource> cameras = new ArrayList<>(); 
 }

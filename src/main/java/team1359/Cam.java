@@ -44,14 +44,14 @@ public class Cam {
             .addListener(event -> {
                 if (event.value.isDouble()) {
                     int i = (int) event.value.getDouble();
-                    if (i >= 0 && i < Global.cameras.size()) {
-                    server.setSource(Global.cameras.get(i));
+                    if (i >= 0 && i < Main.global.cameras.size()) {
+                    server.setSource(Main.global.cameras.get(i));
                     }
                 } else if (event.value.isString()) {
                     String str = event.value.getString();
                     for (int i = 0; i < Global.cameraConfigs.size(); i++) {
                         if (str.equals(Global.cameraConfigs.get(i).name)) {
-                            server.setSource(Global.cameras.get(i));
+                            server.setSource(Main.global.cameras.get(i));
                             break;
                         }
                     }
