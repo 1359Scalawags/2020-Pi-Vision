@@ -8,7 +8,8 @@ import team1359.Global;
 public class Network{
     NetworkTableInstance inst;
     NetworkTable NT;
-    NetworkTableEntry Distancevalue, AngleValue;
+    NetworkTableEntry Distancevalue;
+    NetworkTableEntry[] AngleValues;
 
     public void init(){
       inst = NetworkTableInstance.getDefault();
@@ -23,19 +24,22 @@ public class Network{
       NT = inst.getTable("PI");
 
       Distancevalue = NT.getEntry("Distance");
-      AngleValue = NT.getEntry("Angle");
+      AngleValues[0] = NT.getEntry("XAngle");
+      AngleValues[1] = NT.getEntry("YAngle");
 
       Distancevalue.setNumber(-1);
-      AngleValue.setNumber(-1);
+      AngleValues[0].setNumber(-1);
+      AngleValues[1].setNumber(-1);
     }
 
     public void update(){
         NT = inst.getTable("PI");
 
         Distancevalue = NT.getEntry("Distance");
-        AngleValue = NT.getEntry("Angle");
+        AngleValues[0] = NT.getEntry("XAngle");
+        AngleValues[1] = NT.getEntry("YAngle");
 
-        String str = Distancevalue.getString("Nothing RPI") + " " + AngleValue.getString("Nothing RPI");
+        String str = Distancevalue.getString("Nothing RPI") + " " + AngleValues[0].getString("Nothing RPI") + " " + AngleValues[1].getString("Nothing RPI");
         System.out.println(str);
     }
 
