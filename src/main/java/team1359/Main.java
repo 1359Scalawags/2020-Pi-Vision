@@ -51,7 +51,7 @@ public final class Main {
     if (global.cameras.size() >= 1) {
       VisionThread visionThread = new VisionThread(global.cameras.get(0), new GripPipeline(), pipeline -> {
         calc.processContours(pipeline.filterContoursOutput());
-        net.setTable(calc.getDistanceFromTarget(), calc.getAngleFromTarget());
+        net.setTable(calc.getDistanceFromTarget(), calc.getAnglesFromTarget());
       });
 
       visionThread.start();

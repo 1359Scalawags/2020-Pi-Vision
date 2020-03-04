@@ -26,10 +26,6 @@ public class Network{
       Distancevalue = NT.getEntry("Distance");
       AngleValues[0] = NT.getEntry("XAngle");
       AngleValues[1] = NT.getEntry("YAngle");
-
-      Distancevalue.setNumber(-1);
-      AngleValues[0].setNumber(-1);
-      AngleValues[1].setNumber(-1);
     }
 
     public void update(){
@@ -43,7 +39,9 @@ public class Network{
         System.out.println(str);
     }
 
-	public void setTable(double distanceFromTarget, double angleFromTarget) {
-
+	public void setTable(double dist, double[] angles) {
+    Distancevalue.setNumber(dist);
+    AngleValues[0].setNumber(angles[0]);
+    AngleValues[1].setNumber(angles[1]);
 	}
 }
