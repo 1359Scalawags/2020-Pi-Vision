@@ -33,10 +33,7 @@ public final class Main {
     }
 
     net.init();
-
     
-		// start cameras
-
     // start cameras
     for (Global.CameraConfig config : Global.cameraConfigs) {
       global.cameras.add(Cam.startCamera(config));
