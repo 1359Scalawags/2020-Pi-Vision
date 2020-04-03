@@ -4,10 +4,11 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-package team1359;
+// package team1359;
 
 import edu.wpi.first.vision.VisionThread;
 import team1359.Pipeline.GripPipeline;
+import team1359.*;
 
 public final class Main {
   
@@ -32,7 +33,7 @@ public final class Main {
       return;
     }
 
-    net.init();
+    // net.init();
     
     // start cameras
     for (Global.CameraConfig config : Global.cameraConfigs) {

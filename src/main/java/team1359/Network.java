@@ -9,10 +9,12 @@ public class Network{
     NetworkTableInstance inst;
     NetworkTable NT;
     NetworkTableEntry Distancevalue;
-    NetworkTableEntry[] AngleValues;
+    NetworkTableEntry[] AngleValues = new NetworkTableEntry[2];
 
     public void init(){
       inst = NetworkTableInstance.getDefault();
+      inst.setServer("localhost");
+      System.out.println(inst.getConnections());
       if (Global.server) {
         System.out.println("Setting up NetworkTables server");
         inst.startServer();
