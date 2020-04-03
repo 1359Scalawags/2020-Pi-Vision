@@ -11,8 +11,8 @@ import team1359.Pipeline.GripPipeline;
 
 public final class Main {
   
-  public Network net = new Network();
-  public Calculation calc  = new Calculation();
+  public static Network net = new Network();
+  public static Calculation calc  = new Calculation();
   public static Global global = new Global();
 
   private Main() {
@@ -21,7 +21,7 @@ public final class Main {
   /**
    * Main.
    */
-  public void main(String... args) {
+  public static void main(String... args) {
     
     if (args.length > 0) {
       Global.configFile = args[0];
