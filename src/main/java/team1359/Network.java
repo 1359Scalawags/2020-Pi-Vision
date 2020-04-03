@@ -13,11 +13,12 @@ public class Network{
 
     public void init(){
       inst = NetworkTableInstance.getDefault();
-      inst.setServer("localhost");
-      System.out.println(inst.getConnections());
-      if (Global.server) {
+      // inst.setServer("localhost");
+      if (true) {
         System.out.println("Setting up NetworkTables server");
-        inst.startServer();
+        // inst.startServer(arg0);
+        inst.startLocal();
+        // inst.startServer();
       } else {
         System.out.println("Setting up NetworkTables client for team " + Global.team);
         inst.startClientTeam(Global.team);
@@ -42,8 +43,14 @@ public class Network{
     }
 
 	public void setTable(double dist, double[] angles) {
-    Distancevalue.setNumber(dist);
-    AngleValues[0].setNumber(angles[0]);
-    AngleValues[1].setNumber(angles[1]);
+    try{  
+      Distancevalue.setNumber(dist);
+      AngleValues[0].setNumber(angles[0]);
+      AngleValues[1].setNumber(angles[1]);
+    }
+    catch(Exception exception){
+      // System.err.println(exception);
+    }
+    
 	}
 }
