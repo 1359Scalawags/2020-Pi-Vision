@@ -15,19 +15,19 @@ public class Pipeline{
         //Outputs
         private Mat hsvThresholdOutput = new Mat();
         static {
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+            System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         }
 
         /**
          * This is the primary method that runs the entire pipeline and updates the outputs.
         */
         public void process(Mat source0) {
-        // Step HSV_Threshold0:
-        Mat hsvThresholdInput = source0;
-        double[] hsvThresholdHue = {0.0, 180.0};
-        double[] hsvThresholdSaturation = {0.0, 255.0};
-        double[] hsvThresholdValue = {0.0, 133.1569965870307};
-        hsvThreshold(hsvThresholdInput, hsvThresholdHue, hsvThresholdSaturation, hsvThresholdValue, hsvThresholdOutput);
+            // Step HSV_Threshold0:
+            Mat hsvThresholdInput = source0;
+            double[] hsvThresholdHue = {0.0, 180.0};
+            double[] hsvThresholdSaturation = {0.0, 255.0};
+            double[] hsvThresholdValue = {0.0, 133.1569965870307};
+            hsvThreshold(hsvThresholdInput, hsvThresholdHue, hsvThresholdSaturation, hsvThresholdValue, hsvThresholdOutput);
 
         }
 
@@ -36,7 +36,7 @@ public class Pipeline{
         * @return Mat output from HSV_Threshold.
         */
         public Mat hsvThresholdOutput() {
-        return hsvThresholdOutput;
+            return hsvThresholdOutput;
         }
 
         /**
