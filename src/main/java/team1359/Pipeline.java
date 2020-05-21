@@ -33,8 +33,9 @@ public class Pipeline{
             
             processIMG(source0, processingOutput);
         }
-        
-        //By what I can tell Mat is being used as a custom matrix made by OpenCV, in this context they contain an array with the length of 3.
+
+        //By what I can tell Mat is being used as a custom matrix made by OpenCV, this matrix contains an array for each pixel of the camera.
+        //The arrays containing 3 doubles could possibly be the color of the pixels. and Each array could be the individual pixel itself.
         public void processIMG(Mat img, Mat Output){
             // for(int x=0; x<img.width(); x++){    
             //     for(int y=0; y<img.height(); y++){

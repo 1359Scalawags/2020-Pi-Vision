@@ -47,10 +47,6 @@ public final class Main {
     // start image processing on camera 0 if present
     if (global.cameras.size() >= 1) {
       VisionThread visionThread = new VisionThread(global.cameras.get(0), new GripPipeline(), pipeline -> {
-        // calc.processContours(pipeline.filterContoursOutput());
-        // calc.processIMG(global.cameras.get(0));
-
-        // calc.processIMG(new Mat());
         // net.setTable(calc.getDistanceFromTarget(), calc.getAnglesFromTarget());
       });
 
@@ -59,7 +55,7 @@ public final class Main {
 
     while(true){
       try{
-        // net.update();
+        
       }
       catch(Exception exception){
         System.out.println(exception);
