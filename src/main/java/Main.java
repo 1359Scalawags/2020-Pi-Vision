@@ -13,7 +13,6 @@ import team1359.*;
 public final class Main {
   
   public static Network net = new Network();
-  public static Calculation calc  = new Calculation();
   public static Global global = new Global();
 
   private Main() {
@@ -52,7 +51,7 @@ public final class Main {
         // calc.processIMG(global.cameras.get(0));
 
         // calc.processIMG(new Mat());
-        net.setTable(calc.getDistanceFromTarget(), calc.getAnglesFromTarget());
+        // net.setTable(calc.getDistanceFromTarget(), calc.getAnglesFromTarget());
       });
 
       visionThread.start();

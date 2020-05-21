@@ -33,15 +33,17 @@ public class Pipeline{
             
             processIMG(source0, processingOutput);
         }
-
+        
+        //By what I can tell Mat is being used as a custom matrix made by OpenCV, in this context they contain an array with the length of 3.
         public void processIMG(Mat img, Mat Output){
             // for(int x=0; x<img.width(); x++){    
             //     for(int y=0; y<img.height(); y++){
-            //         img.get(x, y);
+            //         System.out.println(img.get(x, y).length);
+            //         // for(int i=0; i< img.get(x, y).length; i++)
+            //         //     System.out.println(x + ", " + y + ", "+ i + ": " + img.get(x, y)[i]);
             //     }
             // }
-
-            System.out.println("width: " + img.width() + ", Height: "+ img.height());
+            // System.out.println("width: " + img.width() + ", Height: "+ img.height());
         }
         public Mat getProcessedImg(){
             return processingOutput;
